@@ -59,7 +59,7 @@ console.log(array);
 
 let pageNum =0;  //Page number index starting from 0
 let points = 0;
-let clicked = false;
+let answerClicked = false;
 
 let score = document.querySelector('.second'); 
 let tracking = document.querySelector('.third');
@@ -68,11 +68,11 @@ let choice1 = document.querySelector('.fifth');
 let choice2 = document.querySelector('.sixth');
 let choice3 = document.querySelector('.seventh');
 let choice4 = document.querySelector('.eighth');
-let next = document.querySelector('.ninth');
+let next = document.querySelector('p');
 let selection = document.querySelector('#lower');
 
 function loadNextQuestion(page) {
-    tracking.textContent = ` ${page+1}/10`;  
+    tracking.textContent = ` ${page}/10`;  
     question.textContent = `What is the capital of ${array[page][0]}?`;
     choice1.textContent = array[page][2][0];
     choice2.textContent = array[page][2][1];
@@ -87,10 +87,11 @@ randomQuizSequence();
 loadNextQuestion(pageNum);
 
 selection.addEventListener('click', function(e) {
-    console.log(e.target.classList);   
+    // console.log(e.target.attributes[0].value);
 
+    answerClicked = true;
+    
     if (e.target.attributes[0].value == 'fifth cell') { 
-        clicked = true;
         if (choice1.textContent == array[pageNum][1]) {
             points += 10;
             score.textContent = `Score: ${points}`;
@@ -104,58 +105,80 @@ selection.addEventListener('click', function(e) {
     }
 
     if (e.target.attributes[0].value == 'sixth cell') {
-        clicked = true;
         if (choice2.textContent == array[pageNum][1]) {
             points += 10;
             score.textContent = `Score: ${points}`;
+            e.target.classList.add('green');
             console.log('Jackpot!');
         }
         else {
+            e.target.classList.add('red');
             console.log('Wrong answer!');       
         }            
     }
 
     if (e.target.attributes[0].value == 'seventh cell') {
-        clicked = true;
         if (choice3.textContent == array[pageNum][1]) {
             points += 10;
             score.textContent = `Score: ${points}`;
+            e.target.classList.add('green');
             console.log('Jackpot!');
         }
         else {
+            e.target.classList.add('red');
             console.log('Wrong answer!');       
         }            
     }
 
     if (e.target.attributes[0].value == 'eighth cell') {
-        clicked = true;
         if (choice4.textContent == array[pageNum][1]) {
             points += 10;
             score.textContent = `Score: ${points}`;
+            e.target.classList.add('green');
             console.log('Jackpot!');
         }
         else {
+            e.target.classList.add('red');
             console.log('Wrong answer!');       
-        }            
+        } 
+            
     }
 
-    if (e.target.attributes[0].value == 'ninth cell') {
-        if (pageNum <= 8) {
-            pageNum++;
-            loadNextQuestion(pageNum);
-            reset();
-        }
-        // else {
-        //     pageNum = 9;       
-        // }    
-        // loadNextQuestion(pageNum); 
-        if (pageNum === 9) {
-            next.innerHTML = 'END';
-        }
-    }      
+    // if (e.target.attributes[0].value == 'box') {
+    //     if (pageNum <= 8) {
+    //         pageNum++;
+    //         loadNextQuestion(pageNum);
+    //         reset();
+    //     }
+    //     else {
+    //         next.innerHTML = 'END';
+    //         // next.classList.add('hide');
+                   
+    //     }
+    // }      
 })
 
 function reset() {
-    selection.classList.remove('blue');
-    selection.classList.remove('red');
+    choice1.classList.remove('green');
+    choice1.classList.remove('red');
+    choice2.classList.remove('green');
+    choice2.classList.remove('red');
+    choice3.classList.remove('green');
+    choice3.classList.remove('red');
+    choice4.classList.remove('green');
+    choice4.classList.remove('red');
+    answerClicked = false;
 }
+
+next.addEventListener('click', function(e) {
+    // console.log(answerClicked); 
+    // next.innerHTML = 'END';
+    // next.classList.add('hide');
+    
+    if (pageNum < 10 && answerClicked == true) {        
+        pageNum++;    
+        loadNextQuestion(pageNum);
+        reset();
+    }
+    console.log(pageNum);
+})

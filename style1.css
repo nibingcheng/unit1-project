@@ -10,7 +10,7 @@ body {
 .sixth { grid-area: sixth; }
 .seventh { grid-area: seventh; }
 .eighth { grid-area: eighth; }
-.ninth { grid-area: ninth; }
+/* .ninth { grid-area: ninth; } */
 
 .container {
     width: 400px;
@@ -42,8 +42,8 @@ margin: 10% auto 50px auto;
         "fifth"
         "sixth"
         "seventh"
-        "eighth"
-        "ninth";    
+        "eighth";
+        /* "ninth";     */
 }
 
 #lower > .cell {    
@@ -113,12 +113,23 @@ a {
     cursor: pointer;
 }
 
+p {
+    text-align: right;
+    /* border: 1px solid; */
+    margin-right: 15px;
+    color: brown;
+}
+
 .red {
     color: red;
 }
 
 .green {
     color: green;
+}
+
+.hide {
+    display: none;
 }
 /*
 @media (max-width: 576px) {
