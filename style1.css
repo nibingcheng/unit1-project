@@ -10,7 +10,6 @@ body {
 .sixth { grid-area: sixth; }
 .seventh { grid-area: seventh; }
 .eighth { grid-area: eighth; }
-/* .ninth { grid-area: ninth; } */
 
 .container {
     width: 400px;
@@ -31,7 +30,6 @@ margin: 10% auto 40px auto;
 
 #upper {
     display: grid;
-    /* border: 1px solid aqua; */
     grid-template-areas:
     "first second third";
     grid-template-columns: 1fr 1fr 1fr;
@@ -47,7 +45,6 @@ margin: 10% auto 40px auto;
         "sixth"
         "seventh"
         "eighth";
-        /* "ninth";     */
 }
 
 #lower > .cell {    
@@ -58,7 +55,6 @@ margin: 10% auto 40px auto;
     margin-bottom: 15px;
     align-items: center;
     justify-content: center;
-    /* border: 1px solid aqua; */
     border-radius: 10px;
     background-color: lightgray;
     box-shadow: 5px 5px 5px #888888;
@@ -68,24 +64,10 @@ margin: 10% auto 40px auto;
 .box {
     display: flex;
     align-items: center;
-    /* height: 60px;     */
-    /* border: 1px solid green; */
 }
-/*
-a {
-    border: 1px solid green;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.9em;
-    cursor: pointer;
-    text-align: center;
-    padding: 3px;
-    color: green;
-}
-*/
+
 .first {
     display: inline;
-    /* text-align: left; */
     margin-left: 10px;
 }
 
@@ -110,23 +92,9 @@ a {
     font-weight: bolder;
     margin-bottom: 25px;
 }
-/*
-#lower > .ninth {
-    color: orange;
-    cursor: pointer;
-    width: auto;
-    height: auto;
-    padding: 5px 10px 5px 10px;
-    margin-right: 10%;
-}
-*/
-/* .fifth, .sixth, .seventh, .eighth {
-    cursor: pointer;
-} */
 
 p {
     text-align: right;
-    /* border: 1px solid; */
     margin-right: 15px;
     color: brown;
     cursor: pointer;
@@ -160,6 +128,7 @@ p {
 }
 */
 
+/* 
 .cell {
     border: 1px solid;
-}
+} */

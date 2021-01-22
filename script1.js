@@ -32,7 +32,10 @@ const array = [
 ["Thailand", "Bangkok", bangkok],
 ["Bangladesh", "Dhaka", dhaka]
 ];
-            
+
+let startTime = new Date();
+let time = 0;  //time used from start to finish in seconds
+
 function  shuffleChoice() {
     let removedItem;
     for (let j=0; j<array.length; j++) {    
@@ -50,15 +53,9 @@ function  randomQuizSequence() {
         array.splice(Math.floor(Math.random()*array.length),0,removedItem);
     }     
 }
-/*
-console.log(array);
-shuffleChoice();
-randomQuizSequence();
-console.log(array);
-*/
 
-let pageNum =0;  //Page number index starting from 0
-let points = 0;
+let pageNum =0;  //Page number index [starting from 0]
+let points = 0;  //each correct answer earns 10 points
 let answerClicked = false;
 
 let score = document.querySelector('.second'); 
@@ -88,13 +85,20 @@ loadNextQuestion(pageNum);
 
 selection.addEventListener('click', function(e) {
     // console.log(e.target.attributes[0].value);
-
+    // allow only one click for a single quiz
     if (answerClicked == false) {    
         answerClicked = true;
         if(pageNum === 9) {
             next.textContent = 'END';
+            let finishTime = new Date();
+            time = (finishTime.getTime() - startTime.getTime())/1000;
+            if (time >= 60) {
+                points = Math.round(points*(1-(time-60)/120));
+                if (time >180) {points = 0;}
+            }
+            alert(`Time used: ${Math.floor(time/60)} min ${Math.floor(time)%60} sec \nYour score: ${Math.floor(points)}`);
         }
-        
+    // check if the clicked is a winner    
         if (e.target.attributes[0].value == 'fifth cell') { 
             if (choice1.textContent == array[pageNum][1]) {
                 points += 10;
@@ -146,9 +150,11 @@ selection.addEventListener('click', function(e) {
                 console.log('Wrong answer!');       
             }                 
         }
-    }  
-    else 
+    }      
+    else {
         console.log('Illegal click!');
+    }    
+
 })
 
 function reset() {
@@ -164,11 +170,6 @@ function reset() {
 }
 
 next.addEventListener('click', function(e) {
-    // console.log(answerClicked); 
-    // next.innerHTML = 'END';
-    // next.classList.add('hide');
-
-    // score.textContent = `Score: ${points}`;
            
     if (answerClicked == false) {
         alert('Please select your answer')
@@ -179,7 +180,7 @@ next.addEventListener('click', function(e) {
         // reset();
     }
     else {
-        console.log(pageNum);
+        // console.log(pageNum);
         next.textContent = 'END';
     }    
 })
