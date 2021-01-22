@@ -72,13 +72,13 @@ let next = document.querySelector('p');
 let selection = document.querySelector('#lower');
 
 function loadNextQuestion(page) {
-    tracking.textContent = ` ${page}/10`;  
+    tracking.textContent = ` ${page+1}/10`;  
     question.textContent = `What is the capital of ${array[page][0]}?`;
     choice1.textContent = array[page][2][0];
     choice2.textContent = array[page][2][1];
     choice3.textContent = array[page][2][2];
     choice4.textContent = array[page][2][3];   
-    // reset();     
+    reset();     
 }
 
 
@@ -89,73 +89,66 @@ loadNextQuestion(pageNum);
 selection.addEventListener('click', function(e) {
     // console.log(e.target.attributes[0].value);
 
-    answerClicked = true;
-    
-    if (e.target.attributes[0].value == 'fifth cell') { 
-        if (choice1.textContent == array[pageNum][1]) {
-            points += 10;
-            score.textContent = `Score: ${points}`;
-            e.target.classList.add('green');
-            console.log('Jackpot!');
+    if (answerClicked == false) {    
+        answerClicked = true;
+        if(pageNum === 9) {
+            next.textContent = 'END';
         }
-        else {
-            e.target.classList.add('red');
-            console.log('Wrong answer!');       
-        }            
-    }
-
-    if (e.target.attributes[0].value == 'sixth cell') {
-        if (choice2.textContent == array[pageNum][1]) {
-            points += 10;
-            score.textContent = `Score: ${points}`;
-            e.target.classList.add('green');
-            console.log('Jackpot!');
+        
+        if (e.target.attributes[0].value == 'fifth cell') { 
+            if (choice1.textContent == array[pageNum][1]) {
+                points += 10;
+                score.textContent = `Score: ${points}`;
+                e.target.classList.add('green');
+                console.log('Jackpot!');
+            }
+            else {
+                e.target.classList.add('red');
+                console.log('Wrong answer!');       
+            }            
         }
-        else {
-            e.target.classList.add('red');
-            console.log('Wrong answer!');       
-        }            
-    }
 
-    if (e.target.attributes[0].value == 'seventh cell') {
-        if (choice3.textContent == array[pageNum][1]) {
-            points += 10;
-            score.textContent = `Score: ${points}`;
-            e.target.classList.add('green');
-            console.log('Jackpot!');
+        if (e.target.attributes[0].value == 'sixth cell') {
+            if (choice2.textContent == array[pageNum][1]) {
+                points += 10;
+                score.textContent = `Score: ${points}`;
+                e.target.classList.add('green');
+                console.log('Jackpot!');
+            }
+            else {
+                e.target.classList.add('red');
+                console.log('Wrong answer!');       
+            }            
         }
-        else {
-            e.target.classList.add('red');
-            console.log('Wrong answer!');       
-        }            
-    }
 
-    if (e.target.attributes[0].value == 'eighth cell') {
-        if (choice4.textContent == array[pageNum][1]) {
-            points += 10;
-            score.textContent = `Score: ${points}`;
-            e.target.classList.add('green');
-            console.log('Jackpot!');
+        if (e.target.attributes[0].value == 'seventh cell') {
+            if (choice3.textContent == array[pageNum][1]) {
+                points += 10;
+                score.textContent = `Score: ${points}`;
+                e.target.classList.add('green');
+                console.log('Jackpot!');
+            }
+            else {
+                e.target.classList.add('red');
+                console.log('Wrong answer!');       
+            }            
         }
-        else {
-            e.target.classList.add('red');
-            console.log('Wrong answer!');       
-        } 
-            
-    }
 
-    // if (e.target.attributes[0].value == 'box') {
-    //     if (pageNum <= 8) {
-    //         pageNum++;
-    //         loadNextQuestion(pageNum);
-    //         reset();
-    //     }
-    //     else {
-    //         next.innerHTML = 'END';
-    //         // next.classList.add('hide');
-                   
-    //     }
-    // }      
+        if (e.target.attributes[0].value == 'eighth cell') {
+            if (choice4.textContent == array[pageNum][1]) {
+                points += 10;
+                score.textContent = `Score: ${points}`;
+                e.target.classList.add('green');
+                console.log('Jackpot!');
+            }
+            else {
+                e.target.classList.add('red');
+                console.log('Wrong answer!');       
+            }                 
+        }
+    }  
+    else 
+        console.log('Illegal click!');
 })
 
 function reset() {
@@ -174,11 +167,19 @@ next.addEventListener('click', function(e) {
     // console.log(answerClicked); 
     // next.innerHTML = 'END';
     // next.classList.add('hide');
-    
-    if (pageNum < 10 && answerClicked == true) {        
+
+    // score.textContent = `Score: ${points}`;
+           
+    if (answerClicked == false) {
+        alert('Please select your answer')
+    }
+    else if (pageNum < 9) {        
         pageNum++;    
         loadNextQuestion(pageNum);
-        reset();
+        // reset();
     }
-    console.log(pageNum);
+    else {
+        console.log(pageNum);
+        next.textContent = 'END';
+    }    
 })
