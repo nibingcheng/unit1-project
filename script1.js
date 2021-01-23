@@ -103,7 +103,7 @@ selection.addEventListener('click', function(e) {
             if (e.target.attributes[0].value == `${selection.children[j].classList}`) { 
                 if (choice[j].textContent == array[pageNum][1]) {
                     points += 10;
-                    score.textContent = `Score: ${points}`;
+                    // score.textContent = `Score: ${points}`;
                     e.target.classList.add('green');
                     console.log('Jackpot!');
                 }
@@ -148,7 +148,7 @@ next.addEventListener('click', function(e) {
     else if (pageNum < 9) {        
         pageNum++;    
         loadNextQuestion(pageNum);
-        // reset();
+        score.textContent = `Score: ${points}`;
     }
     else {
         next.textContent = 'END';
