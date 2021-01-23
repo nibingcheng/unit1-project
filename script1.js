@@ -91,14 +91,11 @@ loadNextQuestion(pageNum);
 
 selection.addEventListener('click', function(e) {
     sessionStorage.setItem('myStorage', [pageNum, points]);   
-    // allow only one click for each question    
-    // console.log(e.target.attributes[0].value);   
+    // allow only one click for each question       
     if (answerClicked == false) {    
         answerClicked = true;
         
         // check if the clicked is a winner      
-        // console.log(e.target.attributes[0].value);
-        // console.log(`${selection.children[1].classList}`);
         for (let j=0; j<4; j++) {
             if (e.target.attributes[0].value == `${selection.children[j].classList}`) { 
                 if (choice[j].textContent == array[pageNum][1]) {
