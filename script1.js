@@ -85,19 +85,10 @@ loadNextQuestion(pageNum);
 
 selection.addEventListener('click', function(e) {
     // console.log(e.target.attributes[0].value);
-    // allow only one click for a single quiz
+    // allow only one click for each question
     if (answerClicked == false) {    
         answerClicked = true;
-        if(pageNum === 9) {
-            next.textContent = 'END';
-            let finishTime = new Date();
-            time = (finishTime.getTime() - startTime.getTime())/1000;
-            if (time >= 60) {
-                points = Math.round(points*(1-(time-60)/120));
-                if (time >180) {points = 0;}
-            }
-            alert(`Time used: ${Math.floor(time/60)} min ${Math.floor(time)%60} sec \nYour score: ${Math.floor(points)}`);
-        }
+        
     // check if the clicked is a winner    
         if (e.target.attributes[0].value == 'fifth cell') { 
             if (choice1.textContent == array[pageNum][1]) {
@@ -149,6 +140,19 @@ selection.addEventListener('click', function(e) {
                 e.target.classList.add('red');
                 console.log('Wrong answer!');       
             }                 
+        }
+        
+        if(pageNum === 9) {
+            next.textContent = 'END';
+            let finishTime = new Date();
+            time = (finishTime.getTime() - startTime.getTime())/1000;
+            if (time >= 60) {
+                points = Math.round(points*(1-(time-60)/120));
+                if (time >180) {
+                    points = 0;
+                }
+            }
+            alert(`Time used: ${Math.floor(time/60)} min ${Math.floor(time)%60} sec \nYour score: ${Math.floor(points)}`);
         }
     }      
     else {
