@@ -2,12 +2,13 @@
 
 # Self-scoring Trivia
 
-This is the front-end unit project of General Assembly's SEI course.
+This is the front-end unit project of General Assembly's SEI course to build a game using
+HTML, CSS and JavaScript.
 
 ## Project Objective 
 
 The goal is to create a browser rendered trivia game. The project offers an opportunity for
-students to be creative, and work through programming challenges in HTML, CSS and Javescript.
+students to be creative, and work through programming challenges.
 
 ## Game rules
 
@@ -51,4 +52,4 @@ Click the start button the game will begin. No software download and/or installa
 ## Future improvement
 
 - The game in its current form lacks accessibility. A pointer device (mouse and/or track pad) is required.
-  In the future, it should add functionality such that it is possible to only use the keyboard.    
+  In the future, functionality should be added such that it is possible to only use the keyboard.    
