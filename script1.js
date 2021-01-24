@@ -112,7 +112,7 @@ selection.addEventListener('click', function(e) {
         }
         // handle the final question of the quiz, click behavior and time based scoring
         if (pageNum === 9) {
-            next.textContent = 'END';
+            // next.textContent = 'END';
             let finishTime = new Date();
             time = (finishTime.getTime() - startTime.getTime())/1000;
             if (time >= 60) {
@@ -121,7 +121,7 @@ selection.addEventListener('click', function(e) {
                     points = 0;
                 }
             }
-            alert(`Time used: ${Math.floor(time/60)} min ${Math.floor(time)%60} sec \nYour score: ${Math.floor(points)}`);
+            // alert(`Time used: ${Math.floor(time/60)} min ${Math.floor(time)%60} sec \nYour score: ${Math.floor(points)}`);
             // sessionStorage.removeItem('myStorage');
         }
     }      
@@ -148,7 +148,9 @@ next.addEventListener('click', function(e) {
         score.textContent = `Score: ${points}`;
     }
     else {
+        score.textContent = `Score: ${points}`;
         next.textContent = 'END';
+        alert(`Time used: ${Math.floor(time/60)} min ${Math.floor(time)%60} sec \nYour score: ${Math.floor(points)}`);
     }
     sessionStorage.setItem('myStorage', [pageNum, points]);    
 })
