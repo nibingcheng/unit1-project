@@ -71,8 +71,11 @@ let next = document.querySelector('p');
 let selection = document.querySelector('#lower');
 
 let choice = [];
+let className = [];
 for (let i=0; i<4; i++) {
-    choice[i] = document.querySelector(`.${selection.children[i].classList[0]}`);
+    className[i] = selection.children[i].classList[0];
+    choice[i] = document.querySelector(`.${className[i]}`);
+    // choice[i] = document.querySelector(`.${selection.children[i].classList[0]}`);
 }
 score.textContent = `Score: ${points}`;
 function loadNextQuestion(page) {
@@ -90,7 +93,7 @@ randomQuizSequence();
 loadNextQuestion(pageNum);
 
 selection.addEventListener('click', function(e) {
-    sessionStorage.setItem('myStorage', [pageNum, points]);   
+       
     // allow only one click for each question       
     if (answerClicked == false) {    
         answerClicked = true;
@@ -121,13 +124,12 @@ selection.addEventListener('click', function(e) {
                     points = 0;
                 }
             }
-            // alert(`Time used: ${Math.floor(time/60)} min ${Math.floor(time)%60} sec \nYour score: ${Math.floor(points)}`);
-            // sessionStorage.removeItem('myStorage');
         }
     }      
     else {
         console.log('Illegal click!');
-    }    
+    }   
+    sessionStorage.setItem('myStorage', [pageNum, points]); 
 })
 // When a new question loads, clear all text color from previous question's answer
 function reset() {
