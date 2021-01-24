@@ -93,12 +93,11 @@ margin: 10% auto 40px auto;
     margin-bottom: 25px;
 }
 
-p {
+p, button {
     text-align: right;
-    font-size: 0.8em;
-    font-style: oblique;
-    margin-right: 15px;
-    margin-top: 50px;
+    font-size: 1em;
+    margin-right: 20px;
+    margin-top: 20px;
     color: brown;
     cursor: pointer;
 }
